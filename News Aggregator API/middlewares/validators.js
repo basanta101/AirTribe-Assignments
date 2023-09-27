@@ -68,22 +68,24 @@ function getNewsPreferences(email, users) {
 }
 
 // Middleware to check if the request has an email parameter
-function checkEmailExists(req, res, next) {
-    const { email } = req.query;
-
-    // Check if the email is present in the users array
-    const userExists = users.some(user => user.email === email);
-
-    if (!userExists) {
-        // User not found, return an error response with proper status and message
-        return res.status(404).json({
-            status: 'fail',
-            message: 'User not found',
-        });
+function checkEmailExists (users) {
+    return function (req, res, next) {
+        const { email } = req.query;
+    
+        // Check if the email is present in the users array
+        const userExists = users.some(user => user.email === email);
+    
+        if (!userExists) {
+            // User not found, return an error response with proper status and message
+            return res.status(404).json({
+                status: 'fail',
+                message: 'User not found',
+            });
+        }
+    
+        // User exists, allow the execution to proceed to the next middleware or route handler
+        next();
     }
-
-    // User exists, allow the execution to proceed to the next middleware or route handler
-    next();
 }
 
 // Define validation checks as middleware functions
