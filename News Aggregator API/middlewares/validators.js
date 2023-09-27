@@ -1,16 +1,5 @@
 const { check } = require('express-validator');
 
-// Validation middleware to check if req.body contains email and password
-function validateRegistration(req, res, next) {
-    const { email, password } = req.body;
-    if (!email || !password) {
-        return res.status(400).json({
-            status: 'fail',
-            message: 'Both email and password are required!',
-        });
-    }
-    next();
-}
 
 // Middleware to check if email is already taken
 function checkEmailTaken(users) {
@@ -95,4 +84,4 @@ const registrationValidation = [
 ];
 
 
-module.exports = { validateRegistration, checkEmailTaken, checkEmailParam, getNewsPreferences, checkEmailExists, registrationValidation };
+module.exports = { checkEmailTaken, checkEmailParam, getNewsPreferences, checkEmailExists, registrationValidation };

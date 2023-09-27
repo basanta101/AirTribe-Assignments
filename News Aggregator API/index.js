@@ -10,7 +10,6 @@ const auth = require('./middlewares/authenticate');
 
 // Import custom middlewares for validation and checks
 const {
-    validateRegistration,
     checkEmailTaken,
     getNewsPreferences,
     checkEmailParam,
@@ -20,6 +19,7 @@ const {
 
 const { errorHandler } = require('./middlewares/errorHandler');
 const { fetchNewsByPreference } = require('./middlewares/fetchNews')
+const {cacheData} = require('./middlewares/cache')
 
 // Create an array to store user data
 const users = [];
@@ -29,6 +29,7 @@ const app = express();
 app.use(bodyParser.json());
 // use morgan to log requests to the console
 app.use(morgan('dev'));
+
 
 let rateLimiter = rateLimit({
     windowMs: 1 * 60 * 1000, // 1 minutes
@@ -181,6 +182,8 @@ app.get('/preferences', checkEmailParam, (req, res) => {
 });
 
 app.get('/news', async (req, res, next) => {
+    debugger
+
     try {
         // Access the authenticated user's email from the request
         const { email } = req.user;
@@ -194,19 +197,23 @@ app.get('/news', async (req, res, next) => {
         }
 
         // Fetch news articles based on the user's preferences
-        req.preference = userPreferences.data.preferences
+        req.params.key = userPreferences.data.preferences
         next()
 
     } catch (error) {
+    debugger
+
         console.error('Error:', error);
         res.status(500).json({
             status: 'error',
             message: 'Internal Server Error',
         });
     }
-}, fetchNewsByPreference);
+}, cacheData, fetchNewsByPreference);
 
 app.use(errorHandler)
+
+
 
 // Start the Express server on the specified port
 const PORT = process.env.PORT || 3000;
@@ -216,3 +223,7 @@ app.listen(PORT, () => {
 
 
 // https://adevait.com/nodejs/how-to-implement-jwt-authentication-on-node
+
+// Redis Cache: https://www.digitalocean.com/community/tutorials/how-to-implement-caching-in-node-js-using-redis
+
+// https://medium.com/@techsuneel99/mastering-node-js-security-your-roadmap-to-robust-application-protection-816c0acc26ce
