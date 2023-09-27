@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const express = require('express');
+const rateLimit = require("express-rate-limit");
 const bodyParser = require('body-parser');
 const { check, validationResult } = require('express-validator');
 const morgan = require('morgan')
@@ -28,6 +29,21 @@ const app = express();
 app.use(bodyParser.json());
 // use morgan to log requests to the console
 app.use(morgan('dev'));
+
+let rateLimiter = rateLimit({
+    windowMs: 1 * 60 * 1000, // 1 minutes
+    max: 100,
+    message: {
+        error: {
+            code: 429,
+            message: "Too Many Requests",
+            description: "We're sorry, but you have exceeded the maximum number of requests allowed. Please try again later."
+        }
+    },
+    standardHeaders: true,
+    legacyHeaders: false
+});
+app.use(rateLimiter);
 
 // Define the POST route for user registration
 // POST /register: Register a new user with input validation
