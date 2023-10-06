@@ -1,5 +1,5 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://bsbickysharma3:BsLeeaMt5avZfnnq@bokhontoz-cluster.ndf6zs3.mongodb.net/?retryWrites=true&w=majority";
+const uri = "SAMPLE_URI"; // STORE THE URI IN GITHUB SECRETS
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
