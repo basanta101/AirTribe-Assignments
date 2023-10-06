@@ -19,7 +19,7 @@ const {
 
 const { errorHandler } = require('./middlewares/errorHandler');
 const { fetchNewsByPreference } = require('./middlewares/fetchNews')
-const {cacheData} = require('./middlewares/cache')
+const { cacheData } = require('./middlewares/cache')
 
 // Create an array to store user data
 const users = [];
@@ -201,9 +201,6 @@ app.get('/news', async (req, res, next) => {
         next()
 
     } catch (error) {
-    debugger
-
-        console.error('Error:', error);
         res.status(500).json({
             status: 'error',
             message: 'Internal Server Error',

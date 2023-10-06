@@ -1,0 +1,100 @@
+{   
+    "_id": "some_id",
+    "name": "theatre_1",
+    "day_1": {
+        "9am-12am": [
+            {
+                "movie_name": "movie_1",
+                "screen_name": "s1"
+            },
+            {
+                "movie_name": "movie_2",
+                "screen_name": "s2"
+            }
+        ],
+        "12pm-3pm": [
+            {
+                "movie_name": "movie_1",
+                "screen_name": "s2"
+            },
+            {
+                "movie_name": "movie_2",
+                "screen_name": "s1"
+            }
+        ],
+        "3pm-6pm": [
+            {
+                "movie_name": "movie_1",
+                "screen_name": "s1"
+            },
+            {
+                "movie_name": "movie_2",
+                "screen_name": "s2"
+            }
+        ]
+    },
+    "day_2": {
+        "9am-12am": [
+            {
+                "movie_name": "movie_1",
+                "screen_name": "s1"
+            },
+            {
+                "movie_name": "movie_2",
+                "screen_name": "s2"
+            }
+        ],
+        "12pm-3pm": [
+            {
+                "movie_name": "movie_1",
+                "screen_name": "s2"
+            },
+            {
+                "movie_name": "movie_2",
+                "screen_name": "s1"
+            }
+        ],
+        "3pm-6pm": [
+            {
+                "movie_name": "movie_1",
+                "screen_name": "s1"
+            },
+            {
+                "movie_name": "movie_2",
+                "screen_name": "s2"
+            }
+        ]
+    },
+    "day_3": {
+        "9am-12am": [
+            {
+                "movie_name": "movie_1",
+                "screen_name": "s1"
+            },
+            {
+                "movie_name": "movie_2",
+                "screen_name": "s2"
+            }
+        ],
+        "12pm-3pm": [
+            {
+                "movie_name": "movie_1",
+                "screen_name": "s2"
+            },
+            {
+                "movie_name": "movie_2",
+                "screen_name": "s1"
+            }
+        ],
+        "3pm-6pm": [
+            {
+                "movie_name": "movie_1",
+                "screen_name": "s1"
+            },
+            {
+                "movie_name": "movie_2",
+                "screen_name": "s2"
+            }
+        ]
+    }
+}

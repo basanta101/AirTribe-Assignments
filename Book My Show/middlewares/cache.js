@@ -23,7 +23,8 @@ async function cacheData(req, res, next) {
     }
   }
 
-async function formatCacheKey(req, res, next){
+  async function formatCacheKey(req, res, next){
+    debugger
     const id = req.params.theatreId;
     const date = `${req.query.date}`;
     const cacheKey =  `${id}/${date}` // theatreId/date
